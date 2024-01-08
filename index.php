@@ -27,6 +27,10 @@ if (isset($_GET["action"])) {
         $contoller_wikis->wikis();
         
     }
+    if ($action === "upload-image"){
+        $contoller_wikis->uploadImage();
+    
+    }
 }else{
 
     include 'View/signup.php';

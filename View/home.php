@@ -6,11 +6,50 @@
     <title>Document</title>
     <script src="https://cdn.tailwindcss.com/"></script>
     <link rel="stylesheet" href="View\tailwind config\tailwind.config.js">
-    <script src="https://cdn.ckeditor.com/ckeditor5/VERSION_NUMBER/classic/ckeditor.js"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/40.2.0/classic/ckeditor.js"></script>
 </head>
 <body>
     
+<?php 
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  // Assuming your CKEditor textarea has a name attribute, e.g., name="editor_content"
+  $editorContent = $_POST["editor_content"];
 
+  // Escape HTML entities to prevent XSS
+  $escapedContent = htmlspecialchars($editorContent, ENT_QUOTES, 'UTF-8');
+
+  // Now $escapedContent contains the sanitized content from CKEditor
+  // You can display it in a way similar to how it would look in a normal textarea
+  echo "Sanitized Content from CKEditor: <pre>{$escapedContent}</pre>";
+}
+
+function upload_image(){
+  $uploadPath = __DIR__ . '\View\image_uploaded\\';
+
+// Check if the 'image_uploaded' key exists in the $_FILES array
+if (isset($_FILES['image_uploaded']) && $_FILES['image_uploaded']['error'] === UPLOAD_ERR_OK) {
+    $tempPath = $_FILES['image_uploaded']['tmp_name'];
+    $fileName = $_FILES['image_uploaded']['name'];
+    $targetPath = $uploadPath . $fileName;
+
+    move_uploaded_file($tempPath, $targetPath);
+
+    // Return JSON response with details (adjust as needed)
+    echo json_encode([
+        'uploaded' => true,
+        'url' => 'View\image_uploaded\\' . $fileName // Adjust the URL structure as needed
+    ]);
+} else {
+    // Return JSON response with error message (adjust as needed)
+    echo json_encode([
+        'uploaded' => false,
+        'error' => 'Upload failed.'
+    ]);
+}
+}
+
+
+?>
 <nav class="bg-white border-gray-200 dark:bg-gray-900">
   <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
     <a href="https://flowbite.com/" class="flex items-center space-x-3 rtl:space-x-reverse">
@@ -64,11 +103,12 @@
 <style>
   body {background:white !important;}
 </style>
-<form action="index.php?action=pushiha" method="post">
-  <div class="editor mx-auto w-10/12 flex flex-col text-gray-800 border border-gray-300 p-4 shadow-lg max-w-2xl">
+<form action="index.php?action=gohome" method="post" enctype="multipart/form-data">
+
+  <div class="editor mx-auto w-10/12 flex flex-col h-[50vh] text-gray-800 border border-gray-300 p-4 shadow-lg max-w-2xl">
     <input class="title bg-gray-100 border border-gray-300 p-2 mb-4 outline-none" name="title" spellcheck="false" placeholder="Title" type="text">
     <!-- <textarea  name="content" class="description bg-gray-100 sec p-3 h-60 border border-gray-300 outline-none" spellcheck="false" placeholder="Describe everything about this post here"></textarea> -->
-    <textarea id="editor"></textarea>
+    <textarea name="editor_content" class="description bg-gray-100 sec p-3 h-[40vh] border border-gray-300  outline-none" id="editor"></textarea>
     <!-- icons -->
     <div class="icons flex text-gray-500 m-2">
       <svg class="mr-2 cursor-pointer hover:text-gray-700 border rounded-full p-1 h-7" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
@@ -89,10 +129,23 @@
 </html>
 
 <script>
-  // Replace 'editor' with the ID of your textarea
+document.addEventListener("DOMContentLoaded", function () {
   ClassicEditor
-    .create(document.querySelector('#editor'))
+    .create(document.querySelector('#editor'), {
+        ckfinder: {
+            uploadUrl: 'index.php?action=upload-image', // Use the correct URL
+            uploadPath: 'View/image_uploaded/' // Use the correct server-side path
+        }
+    })
+    .then(editor => {
+        editor.ui.view.editable.style.height = '40vh';
+    })
     .catch(error => {
-      console.error(error);
+        console.error(error);
     });
+
+});
+
 </script>
+
+

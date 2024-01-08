@@ -36,6 +36,11 @@ class controller_wikis{
         $wikiDAO->add_wiki($title,$content,$userid);
     }
 
+    function uploadImage(){
+        upload_image();
+        
+    }
+
 }
 class controller_categories{
     
