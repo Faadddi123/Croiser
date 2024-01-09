@@ -14,6 +14,30 @@ class wikiDAO{
         $stmt->execute();
 
     }
+    public function get_wikis(){
+        $query = "SELECT * FROM wikis";
+        $stmt = $this->db->query($query);
+        $stmt -> execute();
+        $wikiDATA = $stmt->fetchAll();
+        $wikis = array();
+        foreach ($wikiDATA as $B) {
+            $wikis[] = new wiki($B["id"], $B["user_id"],$B["title"],$B["content"],$B["date_created"]);
+        }
+        return $wikis;
+    }
+    public function get_wikis_by_id($id){
+        $query = "SELECT * FROM wikis WHERE id = :id";
+
+        $stmt = $this->db->query($query);
+        $stmt->bindParam(':id',$id,PDO::PARAM_STR);
+        $stmt -> execute();
+        $wikiDATA = $stmt->fetchAll();
+        $wikis = array();
+        foreach ($wikiDATA as $B) {
+            $wikis[] = new wiki($B["id"], $B["user_id"],$B["title"],$B["content"],$B["date_created"]);
+        }
+        return $wikis;
+    }
 }
 
 

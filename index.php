@@ -16,11 +16,11 @@ if (isset($_GET["action"])) {
         include 'View/Signin.php';
     }
     if ($action === "trysign"){
-        $contoller_horraires->signin() ;
+        $contoller_horraires->signin();
     }
     if ($action === "gohome"){
         var_dump($_SESSION['user']);
-        include 'View/home.php';
+        include 'View/homepage.php';
     }
     if ($action === "pushiha"){
 

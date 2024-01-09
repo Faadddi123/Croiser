@@ -41,6 +41,23 @@ class controller_wikis{
         
     }
 
+    function getwikis(){
+
+        $wikiDAO = new wikiDAO();
+        $wikis = $wikiDAO->get_wikis();
+
+        
+
+    }
+    function getwikisById(){
+
+        $wikiDAO = new wikiDAO();
+        $wikis = $wikiDAO->get_wikis_by_id();
+
+        
+
+    }
+
 }
 class controller_categories{
     
