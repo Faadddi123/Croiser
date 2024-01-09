@@ -29,11 +29,19 @@ class controller_tags{
 }
 class controller_wikis{
     function wikis(){
+        
+
+  // Escape HTML entities to prevent XSS
+  
         $userid = $_SESSION['user'];
         extract($_POST);
+        // $content = htmlspecialchars($editor_content, ENT_QUOTES, 'UTF-8');
         $wikiDAO = new wikiDAO();
-        var_dump($content);
-        $wikiDAO->add_wiki($title,$content,$userid);
+        
+        $wikiDAO->add_wiki($title,$editor_content,$userid);
+        $controller_wikis = new controller_wikis();
+        $controller_wikis->getwikis();
+        
     }
 
     function uploadImage(){
@@ -46,13 +54,14 @@ class controller_wikis{
         $wikiDAO = new wikiDAO();
         $wikis = $wikiDAO->get_wikis();
 
-        
+        include 'View/affichage.php';
 
     }
     function getwikisById(){
 
         $wikiDAO = new wikiDAO();
-        $wikis = $wikiDAO->get_wikis_by_id();
+        //khasni n7at l id;
+        $wikis = $wikiDAO->get_wikis_by_id($id);
 
         
 
@@ -60,7 +69,12 @@ class controller_wikis{
 
 }
 class controller_categories{
-    
+    function getCategories(){
+        $categoryDAO = new categoryDAO();
+        $categories = $categoryDAO->get_category();
+        include 'View/homepage.php';
+
+    }
 }
 
 

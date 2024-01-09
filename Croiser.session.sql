@@ -55,3 +55,12 @@ INSERT INTO tags (name) VALUES ('React');
 INSERT INTO tags (name) VALUES ('Node.js');
 INSERT INTO tags (name) VALUES ('Express.js');
 INSERT INTO tags (name) VALUES ('Bootstrap');
+-- @block
+INSERT INTO categories (name) VALUES ('Technologie'),('Math'),('Earth'),('Documentry');
+-- @block
+INSERT INTO categories (name) VALUES ('Web Development');
+INSERT INTO categories (name) VALUES ('Mobile App Development');
+INSERT INTO categories (name) VALUES ('Data Science');
+INSERT INTO categories (name) VALUES ('UI/UX Design');
+INSERT INTO categories (name) VALUES ('Cloud Computing');
+INSERT INTO categories (name) VALUES ('Artificial Intelligence');

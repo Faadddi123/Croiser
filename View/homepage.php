@@ -85,9 +85,9 @@
                         </button>
                         <div class="collapse navbar-collapse bg-light py-3" id="navbarCollapse">
                             <div class="navbar-nav mx-auto border-top">
-                                <a href="index.html" class="nav-item nav-link">Home</a>
-                                <a href="detail-page.html" class="nav-item nav-link active">Detail Page</a>
-                                <a href="404.html" class="nav-item nav-link">404 Page</a>
+                                <a href="View/index.html" class="nav-item nav-link">Home</a>
+                                <a href="View/detail-page.html" class="nav-item nav-link active">Detail Page</a>
+                                <a href="View/404.html" class="nav-item nav-link">404 Page</a>
                                 <div class="nav-item dropdown">
                                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Dropdown</a>
                                     <div class="dropdown-menu m-0 bg-secondary rounded-0">
@@ -97,7 +97,7 @@
                                         <a href="#" class="dropdown-item">Dropdown 4</a>
                                     </div>
                                 </div>
-                                <a href="contact.html" class="nav-item nav-link">Contact Us</a>
+                                <a href="View/contact.html" class="nav-item nav-link">Contact Us</a>
                             </div>
                             <div class="d-flex flex-nowrap border-top pt-3 pt-xl-0">
                                 <div class="d-flex">
@@ -369,36 +369,14 @@
                                     </div>
                                     <h4 class="mb-4">Popular Categories</h4>
                                     <div class="row g-2">
+                                        <?php foreach($categories as $category) : ?>
                                         <div class="col-12">
                                             <a href="#" class="link-hover btn btn-light w-100 rounded text-uppercase text-dark py-3">
-                                                Life Style
+                                                <?php echo $category->getName(); ?>
                                             </a>
                                         </div>
-                                        <div class="col-12">
-                                            <a href="#" class="link-hover btn btn-light w-100 rounded text-uppercase text-dark py-3">
-                                                Fashion
-                                            </a>
-                                        </div>
-                                        <div class="col-12">
-                                            <a href="#" class="link-hover btn btn-light w-100 rounded text-uppercase text-dark py-3">
-                                                Relationship
-                                            </a>
-                                        </div>
-                                        <div class="col-12">
-                                            <a href="#" class="link-hover btn btn-light w-100 rounded text-uppercase text-dark py-3">
-                                                Art & Culture
-                                            </a>
-                                        </div>
-                                        <div class="col-12">
-                                            <a href="#" class="link-hover btn btn-light w-100 rounded text-uppercase text-dark py-3">
-                                                Self Development
-                                            </a>
-                                        </div>
-                                        <div class="col-12">
-                                            <a href="#" class="link-hover btn btn-light w-100 rounded text-uppercase text-dark py-3 mb-4">
-                                                travel & tourism
-                                            </a>
-                                        </div>
+                                        <?php endforeach; ?>
+                                        
                                     </div>
                                     <h4 class="my-4">Stay Connected</h4>
                                     <div class="row g-4">

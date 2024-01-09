@@ -1,5 +1,5 @@
 <?php
-include 'Model/Connection/connexion.php';
+
 include 'Model/User/modeluser.php';
 class usersDAO{
         private $db;

@@ -1,4 +1,5 @@
 <?php
+include 'Model/Connection/connexion.php';
 include 'Model/wikis/modelwiki.php';
 class wikiDAO{
     private $db;
