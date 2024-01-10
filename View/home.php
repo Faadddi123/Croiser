@@ -13,27 +13,7 @@
 <?php 
 
 
-$uploadPath = __DIR__ . '/image_uploaded/'; // Adjust the path as needed
 
-if (isset($_FILES['image_uploaded']) && $_FILES['image_uploaded']['error'] === UPLOAD_ERR_OK) {
-    $tempPath = $_FILES['image_uploaded']['tmp_name'];
-    $fileName = $_FILES['image_uploaded']['name'];
-    $targetPath = $uploadPath . $fileName;
-
-    move_uploaded_file($tempPath, $targetPath);
-
-    // Return JSON response with details
-    echo json_encode([
-        'uploaded' => true,
-        'url' => 'image_uploaded/' . $fileName
-    ]);
-} else {
-    // Return JSON response with error message
-    echo json_encode([
-        'uploaded' => false,
-        'error' => 'Upload failed.'
-    ]);
-}
 
 
 
@@ -94,10 +74,10 @@ if (isset($_FILES['image_uploaded']) && $_FILES['image_uploaded']['error'] === U
 <!--  -->
 <form action="index.php?action=pushiha" method="post" enctype="multipart/form-data">
 
-  <div class="editor mx-auto w-10/12 flex flex-col h-[50vh] text-gray-800 border border-gray-300 p-4 shadow-lg max-w-2xl">
+  <div class="editor mx-auto w-10/12 flex flex-col  text-gray-800 border border-gray-300 p-4 shadow-lg max-w-2xl">
     <input class="title bg-gray-100 border border-gray-300 p-2 mb-4 outline-none" name="title" spellcheck="false" placeholder="Title" type="text">
-    <!-- <textarea  name="content" class="description bg-gray-100 sec p-3 h-60 border border-gray-300 outline-none" spellcheck="false" placeholder="Describe everything about this post here"></textarea> -->
-    <textarea name="editor_content" class="description bg-gray-100 sec p-3 h-[40vh] border border-gray-300  outline-none" id="editor"></textarea>
+    <!-- <textarea  name="description" class="description bg-gray-100 sec p-3 h-60 border border-gray-300 outline-none" spellcheck="false" placeholder="Describe everything about this post here"></textarea> -->
+    <textarea name="editor_content" class="description bg-gray-100 sec p-3 h-[20vh] border border-gray-300  outline-none" id="editor"></textarea>
     <input type="file" name="image_uploaded" id="">
     <!-- icons -->
     <div class="icons flex text-gray-500 m-2">

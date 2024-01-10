@@ -66,5 +66,44 @@ INSERT INTO categories (name) VALUES ('Cloud Computing');
 INSERT INTO categories (name) VALUES ('Artificial Intelligence');
 -- @block
 ALTER TABLE wikis
+ADD COLUMN tags_id INT;
+ALTER TABLE wikis
 ADD CONSTRAINT fk_wikis_tags
 FOREIGN KEY (tags_id) REFERENCES tags(id);
+-- @block
+SELECT * FROM wikis;
+INSERT INTO wikis (user_id,category_id,title,content,tags_id) VALUES (1,1,'zzzzzz','waaaaaaaaaaaaaaw',1)
+-- @block
+ALTER TABLE wikis
+ADD COLUMN image VARCHAR(100);
+-- @block
+ALTER TABLE wikis
+Drop COLUMN tags_id;
+-- @block
+-- Generate 100 random inserts for the wiki_tags table
+DROP PROCEDURE GenerateWikiTagInserts;
+CREATE PROCEDURE GenerateWikiTagInserts()
+BEGIN
+    DECLARE i INT DEFAULT 1;
+    DECLARE wiki_id INT;
+    DECLARE tag_id INT;
+
+    WHILE i <= 100 DO
+        -- Generate random values for wiki_id and tag_id
+        SET wiki_id = FLOOR(RAND() * 51) + 1;
+        SET tag_id = FLOOR(RAND() * 7) + 1;
+
+        -- Debug output
+        SELECT wiki_id, tag_id;
+
+        -- Insert multiple tags for each wiki
+        INSERT INTO wiki_tags (wiki_id, tag_id) VALUES
+            (wiki_id, tag_id);
+
+        SET i = i + 1;
+    END WHILE;
+END;
+CALL GenerateWikiTagInserts();
+-- @block
+SELECT wikis.*,GROUP_CONCAT(tags.name) AS tag_names FROM wikis INNER JOIN wiki_tags on wikis.id = wiki_tags.wiki_id INNER JOIN tags on wiki_tags.tag_id  = tags.id GROUP BY wikis.id;
+-- @block

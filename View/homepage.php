@@ -131,7 +131,8 @@
                     <div class="modal-body d-flex align-items-center">
                         <div class="input-group w-75 mx-auto d-flex">
                             <input type="search" class="form-control p-3" placeholder="keywords" aria-describedby="search-icon-1">
-                            <span id="search-icon-1" class="input-group-text p-3"><i class="fa fa-search"></i></span>
+                            <button id="search-icon-1" class="input-group-text p-3"><i class="fa fa-search"></i></button>
+                            <!-- <span ><i class="fa fa-search"></i></span> -->
                         </div>
                     </div>
                 </div>
@@ -364,8 +365,8 @@
                             <div class="col-12">
                                 <div class="p-3 rounded border">
                                     <div class="input-group w-100 mx-auto d-flex mb-4">
-                                        <input type="search" class="form-control p-3" placeholder="keywords" aria-describedby="search-icon-1">
-                                        <span id="search-icon-1" class="btn btn-primary input-group-text p-3"><i class="fa fa-search text-white"></i></span>
+                                        <input type="search" id="SearchText" class="form-control p-3" placeholder="keywords" aria-describedby="search-icon-1">
+                                        <button id="search-icon-1-10" class="input-group-text p-3"><i class="fa fa-search"></i></button>
                                     </div>
                                     <h4 class="mb-4">Popular Categories</h4>
                                     <div class="row g-2">
@@ -501,46 +502,13 @@
                                                 <h4 class="mb-0">Trending Tags</h4>
                                             </div>
                                             <ul class="nav nav-pills d-inline-flex text-center mb-4">
-                                                <li class="nav-item mb-3">
+                                                <?php foreach($tags as $tag) : ?>
+                                                <li id="tag-<?php echo $tag->getId(); ?>" class="nav-item mb-3">
                                                     <a class="d-flex py-2 bg-light rounded-pill me-2" href="#">
-                                                        <span class="text-dark link-hover" style="width: 90px;">Lifestyle</span>
+                                                        <span class="text-dark link-hover" style="width: 90px;"><?php echo $tag->getName(); ?></span>
                                                     </a>
                                                 </li>
-                                                <li class="nav-item mb-3">
-                                                    <a class="d-flex py-2 bg-light rounded-pill me-2" href="#">
-                                                        <span class="text-dark link-hover" style="width: 90px;">Sports</span>
-                                                    </a>
-                                                </li>
-                                                <li class="nav-item mb-3">
-                                                    <a class="d-flex py-2 bg-light rounded-pill me-2" href="#">
-                                                        <span class="text-dark link-hover" style="width: 90px;">Politics</span>
-                                                    </a>
-                                                </li>
-                                                <li class="nav-item mb-3">
-                                                    <a class="d-flex py-2 bg-light rounded-pill me-2" href="#">
-                                                        <span class="text-dark link-hover" style="width: 90px;">Magazine</span>
-                                                    </a>
-                                                </li>
-                                                <li class="nav-item mb-3">
-                                                    <a class="d-flex py-2 bg-light rounded-pill me-2" href="#">
-                                                        <span class="text-dark link-hover" style="width: 90px;">Game</span>
-                                                    </a>
-                                                </li>
-                                                <li class="nav-item mb-3">
-                                                    <a class="d-flex py-2 bg-light rounded-pill me-2" href="#">
-                                                        <span class="text-dark link-hover" style="width: 90px;">Movie</span>
-                                                    </a>
-                                                </li>
-                                                <li class="nav-item mb-3">
-                                                    <a class="d-flex py-2 bg-light rounded-pill me-2" href="#">
-                                                        <span class="text-dark link-hover" style="width: 90px;">Travel</span>
-                                                    </a>
-                                                </li>
-                                                <li class="nav-item mb-3">
-                                                    <a class="d-flex py-2 bg-light rounded-pill me-2" href="#">
-                                                        <span class="text-dark link-hover" style="width: 90px;">World</span>
-                                                    </a>
-                                                </li>
+                                                <?php endforeach ; ?>
                                             </ul>
                                         </div>
                                         <div class="col-lg-12">
@@ -721,6 +689,7 @@
 
         <!-- Template Javascript -->
         <script src="View/js/main.js"></script>
+        <script src="View/js/Searchmanagement.js"></script>
     </body>
 
 </html>

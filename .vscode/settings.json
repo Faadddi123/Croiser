@@ -12,9 +12,8 @@
             "name": "Croiser",
             "database": "wikimedia",
             "username": "root",
-            "password": "123"
+            "password": ""
         }
     ]
-    
 }
 

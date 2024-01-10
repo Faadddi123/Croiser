@@ -9,19 +9,18 @@ class wiki{
     private $title;
     private $content;
     private $date_created;
-    private $tags_id;
+  
     private $user_name;
     private $category_name;
     private $tags_name;
 
-    public function __construct($id, $user_id,$title,$content,$date_created,$tags_id
+    public function __construct($id, $user_id,$title,$content,$date_created
         ){
             $this->id = $id;
             $this->user_id = $user_id;
             $this->title = $title;
             $this->content = $content;
             $this->date_created = $date_created;
-            $this->tags_id = $tags_id;
         
         }
 
@@ -75,13 +74,6 @@ class wiki{
         return $this->date_created;
     }
 
-    /**
-     * Get the value of tags_id
-     */ 
-    public function getTags_id()
-    {
-        return $this->tags_id;
-    }
 
     /**
      * Set the value of user_name

@@ -30,6 +30,9 @@ if (isset($_GET["action"])) {
 
         case "pushiha":
             $controller_wikis->wikis();
+            
+
+        exit();
             break;
 
         case "upload-image":
@@ -40,6 +43,13 @@ if (isset($_GET["action"])) {
             $controller_json->ajaxDropdown();
         case "json":
             include 'View/jsonnat.php';
+            break;
+            case "dinilindex":
+            $controller_wikis->getwikis();
+                break;
+        case "page":
+            $controller_categories->getCategories();
+             
             break;
         
     }

@@ -35,12 +35,32 @@ class controller_wikis{
   
         $userid = $_SESSION['user'];
         extract($_POST);
+        $uploadPath = 'View/image_uploaded'; // Adjust the path as needed
+
+if (isset($_FILES['image_uploaded']) && $_FILES['image_uploaded']['error'] === UPLOAD_ERR_OK) {
+    $tempPath = $_FILES['image_uploaded']['tmp_name'];
+    $fileName = $_FILES['image_uploaded']['name'];
+    $targetPath = $uploadPath . $fileName;
+
+    move_uploaded_file($tempPath, $targetPath);
+
+    // Return JSON response with details
+    echo json_encode([
+        'uploaded' => true,
+        'url' => 'image_uploaded/' . $fileName
+    ]);
+} else {
+    // Return JSON response with error message
+    echo json_encode([
+        'uploaded' => false,
+        'error' => 'Upload failed.'
+    ]);
+}
         // $content = htmlspecialchars($editor_content, ENT_QUOTES, 'UTF-8');
         $wikiDAO = new wikiDAO();
         
-        $wikiDAO->add_wiki($title,$editor_content,$userid);
-        $controller_wikis = new controller_wikis();
-        $controller_wikis->getwikis();
+        $wikiDAO->add_wiki($title,$editor_content,$userid,$fileName);
+        header('Location: index.php?action=dinilindex');
         
     }
 
@@ -52,9 +72,13 @@ class controller_wikis{
     function getwikis(){
 
         $wikiDAO = new wikiDAO();
+        $categoryDAO = new categoryDAO();
+        $tagsDAO = new tagsDAO();
         $wikis = $wikiDAO->get_wikis();
-
-        include 'View/affichage.php';
+        $categories = $categoryDAO->get_category();
+        $tags = $tagsDAO->get_tags_for_displaying();
+        
+        include 'View/homepage.php';
 
     }
     function getwikisById(){
@@ -89,27 +113,27 @@ class Controller_Json {
         $data = array();
     
         // Structure data
-        foreach ($wikis as $wiki) {
-            $wiki->setUser_name($usersDAO->get_Name_by_id($wiki->getUser_id()));
+        // foreach ($wikis as $wiki) {
+        //     $wiki->setUser_name($usersDAO->get_Name_by_id($wiki->getUser_id()));
     
-            $data[] = array(
-                'id' => $wiki->getId(),
-                'user_id' => $wiki->getUser_id(),
-                'category_id' => $wiki->getCategory_id(),
-                'title' => $wiki->getTitle(),
-                'content' => $wiki->getContent(),
-                'date_created' => $wiki->getDate_created(),
-                'tags_id' => $wiki->getTags_id(),
-                'user_name' => $wiki->getUser_name(),  // Corrected here
-                'category_name' => $wiki->getCategory_name(),  // Corrected here
-                'tags_name' => $wiki->getTags_name(),  // Corrected here
-                // Add other fields as needed
-            );
-        }
+        //     $data[] = array(
+        //         'id' => $wiki->getId(),
+        //         'user_id' => $wiki->getUser_id(),
+        //         'category_id' => $wiki->getCategory_id(),
+        //         'title' => $wiki->getTitle(),
+        //         'content' => $wiki->getContent(),
+        //         'date_created' => $wiki->getDate_created(),
+        //         'tags_id' => $wiki->getTags_id(),
+        //         'user_name' => $wiki->getUser_name(),  // Corrected here
+        //         'category_name' => $wiki->getCategory_name(),  // Corrected here
+        //         'tags_name' => $wiki->getTags_name(),  // Corrected here
+        //         // Add other fields as needed
+        //     );
+        // }
     
         // Return JSON response
         header('Content-Type: application/json');
-        echo json_encode($data);
+        echo json_encode($wikis);
         exit;
     }
     
