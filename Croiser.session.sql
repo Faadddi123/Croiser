@@ -64,3 +64,7 @@ INSERT INTO categories (name) VALUES ('Data Science');
 INSERT INTO categories (name) VALUES ('UI/UX Design');
 INSERT INTO categories (name) VALUES ('Cloud Computing');
 INSERT INTO categories (name) VALUES ('Artificial Intelligence');
+-- @block
+ALTER TABLE wikis
+ADD CONSTRAINT fk_wikis_tags
+FOREIGN KEY (tags_id) REFERENCES tags(id);

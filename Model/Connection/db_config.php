@@ -6,6 +6,6 @@ define('DB_NAME', 'wikimedia');
 
 define('DB_USER', 'root');
 
-define('DB_PASS', '');
+define('DB_PASS', '123');
 
 ?>

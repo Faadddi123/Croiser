@@ -148,8 +148,8 @@
                     <li class="breadcrumb-item"><a href="#">Pages</a></li>
                     <li class="breadcrumb-item active text-dark">Single Page</li>
                 </ol>
-                <div class="row g-4">
-                    <div class="col-lg-8">
+                <div class="row g-4 ">
+                    <div class="col-lg-8 " id="Searchresult">
                         <div class="mb-4">
                             <a href="#" class="h1 display-5">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</a>
                         </div>
@@ -304,7 +304,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="bg-light rounded p-4">
+                        <!-- <div class="bg-light rounded p-4">
                             <h4 class="mb-4">Comments</h4>
                             <div class="p-4 bg-white rounded mb-4">
                                 <div class="row g-4">
@@ -357,7 +357,7 @@
                                     </div>
                                 </div>
                             </form>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="col-lg-4">
                         <div class="row g-4">

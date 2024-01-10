@@ -34,5 +34,19 @@ class usersDAO{
         }
         
     }
+    public function get_Name_by_id($id){
+        $query = "SELECT * FROM users WHERE id = :id;";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindparam(':id', $id, PDO::PARAM_STR);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $number_of_users = count($result);
+        if( $number_of_users == 1 ){
+            $idofthe_champion = $result[0]["name"];
+            return $idofthe_champion;
+        }else{
+            return false;
+        }
+    }
 }
 ?>

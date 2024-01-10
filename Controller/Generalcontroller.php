@@ -77,5 +77,42 @@ class controller_categories{
     }
 }
 
+// ExampleController.php
+class Controller_Json {
+
+
+    public function ajaxDropdown() {
+        $wikiDAO = new wikiDAO();
+        $usersDAO = new usersDAO();
+        $wikis = $wikiDAO->get_wikis_for_json();
+    
+        $data = array();
+    
+        // Structure data
+        foreach ($wikis as $wiki) {
+            $wiki->setUser_name($usersDAO->get_Name_by_id($wiki->getUser_id()));
+    
+            $data[] = array(
+                'id' => $wiki->getId(),
+                'user_id' => $wiki->getUser_id(),
+                'category_id' => $wiki->getCategory_id(),
+                'title' => $wiki->getTitle(),
+                'content' => $wiki->getContent(),
+                'date_created' => $wiki->getDate_created(),
+                'tags_id' => $wiki->getTags_id(),
+                'user_name' => $wiki->getUser_name(),  // Corrected here
+                'category_name' => $wiki->getCategory_name(),  // Corrected here
+                'tags_name' => $wiki->getTags_name(),  // Corrected here
+                // Add other fields as needed
+            );
+        }
+    
+        // Return JSON response
+        header('Content-Type: application/json');
+        echo json_encode($data);
+        exit;
+    }
+    
+}
 
 ?>

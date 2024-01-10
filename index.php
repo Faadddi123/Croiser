@@ -3,6 +3,7 @@ include 'Controller/Generalcontroller.php';
 $controller_horaires = new controller_users();
 $controller_wikis = new controller_wikis();
 $controller_categories = new controller_categories();
+$controller_json = new Controller_Json();
 session_start();
 
 if (isset($_GET["action"])) {
@@ -24,6 +25,7 @@ if (isset($_GET["action"])) {
         case "gohome":
             var_dump($_SESSION['user']);
             include 'View/home.php';
+            
             break;
 
         case "pushiha":
@@ -34,11 +36,12 @@ if (isset($_GET["action"])) {
             $controller_wikis->uploadImage();
             break;
         case "seepage":
-            $controller_categories->getCategories();
-
-        default:
-            include 'View/signup.php';
+            // $controller_categories->getCategories();
+            $controller_json->ajaxDropdown();
+        case "json":
+            include 'View/jsonnat.php';
             break;
+        
     }
 } else {
     include 'View/signup.php';

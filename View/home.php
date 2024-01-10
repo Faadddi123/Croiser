@@ -91,8 +91,8 @@ if (isset($_FILES['image_uploaded']) && $_FILES['image_uploaded']['error'] === U
 <style>
   body {background:white !important;}
 </style>
-<!-- index.php?action=pushiha -->
-<form action="" method="post" enctype="multipart/form-data">
+<!--  -->
+<form action="index.php?action=pushiha" method="post" enctype="multipart/form-data">
 
   <div class="editor mx-auto w-10/12 flex flex-col h-[50vh] text-gray-800 border border-gray-300 p-4 shadow-lg max-w-2xl">
     <input class="title bg-gray-100 border border-gray-300 p-2 mb-4 outline-none" name="title" spellcheck="false" placeholder="Title" type="text">
