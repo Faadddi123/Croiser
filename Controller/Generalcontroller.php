@@ -65,7 +65,7 @@ if (isset($_FILES['image_uploaded']) && $_FILES['image_uploaded']['error'] === U
     }
 
     function uploadImage(){
-        upload_image();
+        // upload_image();
         
     }
 
@@ -81,6 +81,18 @@ if (isset($_FILES['image_uploaded']) && $_FILES['image_uploaded']['error'] === U
         include 'View/homepage.php';
 
     }
+    function DisableWiki(){
+        $id = isset($_GET['id']) ? $_GET['id'] : 0;
+        $wikiDAO = new wikiDAO();
+        $wikiDAO->disable_wiki($id);
+        header('Location: index.php?action=admin');
+    }
+    function EnableWiki(){
+        $id = isset($_GET['id'])? $_GET['id'] : 0;
+        $wikiDAO = new wikiDAO();
+        $wikiDAO->enale_wiki($id);
+        header('Location: index.php?action=admin');
+    }
     function getwikisById(){
 
         $wikiDAO = new wikiDAO();
@@ -89,6 +101,18 @@ if (isset($_FILES['image_uploaded']) && $_FILES['image_uploaded']['error'] === U
 
         
 
+    }
+    function display_table(){
+        $wikiDAO = new wikiDAO();
+        $usersDAO = new usersDAO();
+        $categoryDAO = new categoryDAO();
+        $wikis = $wikiDAO->get_wikis();
+        foreach($wikis as $wiki):
+            $wiki->setUser_name($usersDAO->get_Name_by_id($wiki->getUser_id()));
+            $wiki->setCategory_name($categoryDAO->get_category_name_by_id($wiki->getCategory_id()));
+            
+        endforeach;
+        include 'View/adminView/tables_wikis.php';
     }
 
 }
@@ -99,6 +123,16 @@ class controller_categories{
         include 'View/homepage.php';
 
     }
+    function getCategoriesAndCount(){
+        $categoryDAO = new categoryDAO();
+        $categories = $categoryDAO->get_ALLcategory();
+        foreach($categories as $category):
+            $category->setNumber_in_wikis($categoryDAO->get_number_of_wikis_by_ids($category->getId()));
+        endforeach;
+        include 'View/adminView/tables_category.php';
+
+    }
+
 }
 
 // ExampleController.php
@@ -107,10 +141,29 @@ class Controller_Json {
 
     public function ajaxDropdown() {
         $wikiDAO = new wikiDAO();
+        $title = isset($_GET['title']) ? $_GET['title'] : '';
+        $tag = isset($_GET['tag']) ? $_GET['tag'] : '';
+        $category = isset($_GET['category']) ? $_GET['category'] : '';
+        if(!empty($title)){
+           
+            $wikis = $wikiDAO->get_wikis_for_json_by_title($title);
+        }else if(!empty($tag)){
+           
+            $wikis = $wikiDAO->get_wikis_for_json_by_tag($tag);
+        }else if(!empty($category)){
+         
+            $wikis = $wikiDAO->get_wikis_for_json_by_category($category);
+        }else{
+            $wikis = $wikiDAO->get_wikis_for_json();
+        }
+        
         $usersDAO = new usersDAO();
-        $wikis = $wikiDAO->get_wikis_for_json();
-    
+        
+   
         $data = array();
+        header('Content-Type: application/json');
+        echo json_encode($wikis);
+        exit;
     
         // Structure data
         // foreach ($wikis as $wiki) {
@@ -132,9 +185,6 @@ class Controller_Json {
         // }
     
         // Return JSON response
-        header('Content-Type: application/json');
-        echo json_encode($wikis);
-        exit;
     }
     
 }

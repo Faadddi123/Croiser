@@ -9,18 +9,21 @@ class wiki{
     private $title;
     private $content;
     private $date_created;
+    private $archived;
   
     private $user_name;
     private $category_name;
     private $tags_name;
 
-    public function __construct($id, $user_id,$title,$content,$date_created
+    public function __construct($id, $user_id,$title,$content,$date_created,$category_id,$archived
         ){
             $this->id = $id;
             $this->user_id = $user_id;
             $this->title = $title;
             $this->content = $content;
             $this->date_created = $date_created;
+            $this->category_id = $category_id;
+            $this->archived = $archived;
         
         }
 
@@ -133,6 +136,14 @@ class wiki{
         $this->tags_name = $tags_name;
 
         return $this;
+    }
+
+    /**
+     * Get the value of archived
+     */ 
+    public function getArchived()
+    {
+        return $this->archived;
     }
 }
 

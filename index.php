@@ -48,10 +48,36 @@ if (isset($_GET["action"])) {
             $controller_wikis->getwikis();
                 break;
         case "page":
-            $controller_categories->getCategories();
+            $controller_wikis->getwikis();
              
             break;
-        
+        case "contuct":
+            include 'View/contact.php';
+            break;
+        case "realhome":
+            include 'View/index.php';
+            break;
+        case "404":
+            include 'View/404.php';
+            break;
+        case "admin":
+            $controller_wikis->display_table();
+            break;
+        case "admin_category":
+            $controller_categories->getCategoriesAndCount();
+            break;
+        case "wiki_disable":
+            $controller_wikis->DisableWiki();
+            break;
+        case "wiki_enable":
+            $controller_wikis->EnableWiki();
+            break;
+        case "wiki_edit":
+            $controller_wikis->DisableWiki();
+            break;
+        case "wiki_delete":
+            $controller_wikis->EnableWiki();
+            break;
     }
 } else {
     include 'View/signup.php';
