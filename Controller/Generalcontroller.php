@@ -13,7 +13,7 @@ class controller_users{
         
         $usersDAO->add_user($name,$email,$password);
 
-        include 'View/adminView/register.php';
+        include 'View/Signin.php';
         
     }
     function getusersForTable(){
@@ -50,7 +50,8 @@ class controller_wikis{
   // Escape HTML entities to prevent XSS
   $userid = $_SESSION['user'];
   extract($_POST);
-  $uploadPath = 'View/image_uploaded'; // Adjust the path as needed
+  $tagIds = isset($_POST['tags']) ? $_POST['tags'] : [];
+  $uploadPath = 'View/image_uploaded/'; // Adjust the path as needed
   
   if (isset($_FILES['image_uploaded']) && $_FILES['image_uploaded']['error'] === UPLOAD_ERR_OK) {
       $tempPath = $_FILES['image_uploaded']['tmp_name'];
@@ -74,12 +75,14 @@ class controller_wikis{
     if(isset($_GET['idwiki'])){
         $id = $_GET['idwiki'];
         var_dump($fileName);
-        $wikiDAO->update_wiki($title,$editor_content,$userid,$fileName,$id);
+        $wikiDAO->update_wiki($title,$editor_content,$userid,$fileName,$id,$tagIds,$selected_action);
+    }else{
+        $wikiDAO->add_wiki($title,$editor_content,$userid,$fileName,$tagIds,$selected_action);
     }
         // $content = htmlspecialchars($editor_content, ENT_QUOTES, 'UTF-8');
         
         
-        $wikiDAO->add_wiki($title,$editor_content,$userid,$fileName);
+        
         header('Location: index.php?action=dinilindex');
         
     }
@@ -102,7 +105,11 @@ class controller_wikis{
             $fileName = $wiki[0]->getImage();
             var_dump($fileName);
         }
-        include 'View/Signin.php';
+        $tagsDAO = new tagsDAO();
+        $tags = $tagsDAO->gettags_ALL();
+        $categoryDAO = new categoryDAO();
+        $categories = $categoryDAO->get_Allcategory();
+        include 'View/adminView/InsertofWikis.php';
     }
     function getwikis(){
 
@@ -114,6 +121,18 @@ class controller_wikis{
         $tags = $tagsDAO->get_tags_for_displaying();
         
         include 'View/homepage.php';
+
+    }
+    function getALLwikis(){
+
+        $wikiDAO = new wikiDAO();
+        $categoryDAO = new categoryDAO();
+        $tagsDAO = new tagsDAO();
+        $wikis = $wikiDAO->get_wikis();
+        $categories = $categoryDAO->get_category();
+        $tags = $tagsDAO->get_tags_for_displaying();
+        
+        include 'View/index.php';
 
     }
     function DisableWiki(){
@@ -128,12 +147,18 @@ class controller_wikis{
         $wikiDAO->enale_wiki($id);
         header('Location: index.php?action=admin_wiki');
     }
+    function delete_wiki(){
+        $id = isset($_GET['id'])? $_GET['id'] : 0;
+        $wikiDAO = new wikiDAO();
+        $wikiDAO->delete_wiki($id);
+        header('Location: index.php?action=admin_wiki');
+    }
     function getwikisById(){
-
+        $id = isset($_GET['id'])? $_GET['id'] : 0;
         $wikiDAO = new wikiDAO();
         //khasni n7at l id;
         $wikis = $wikiDAO->get_wikis_by_id($id);
-
+        return $wikis;
     }
     function display_table_wiki(){
         $wikiDAO = new wikiDAO();

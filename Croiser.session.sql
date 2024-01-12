@@ -4,14 +4,15 @@ CREATE DATABASE wikimedia;
 USE wikimedia;
 --@block
 -- Table: users
+
 CREATE TABLE users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(50) NOT NULL,
     email VARCHAR(100) NOT NULL,
     password VARCHAR(255) NOT NULL,
-    role ENUM('author', 'admin') DEFAULT 'author'
+    role ENUM('user', 'admin') DEFAULT 'user'
 );
-
+-- @block
 -- Table: categories
 CREATE TABLE categories (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -281,3 +282,6 @@ INNER JOIN tags ON wiki_tags.tag_id = tags.id
 INNER JOIN categories ON categories.id = wikis.category_id
 WHERE wikis.title LIKE '%hi%'
 GROUP BY wikis.id;
+
+-- @block
+INSERT INTO wiki_tags (wiki_id, tag_id) VALUES (30, 5)

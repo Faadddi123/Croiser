@@ -170,9 +170,9 @@
                             </div>
                         </div>
                         <div class="border-bottom py-3">
-                            <a href="#" class="display-4 text-dark mb-0 link-hover">Lorem Ipsum is simply dummy text of the printing</a>
+                            <a href="#" class="display-4 text-dark mb-0 link-hover"><?php echo $wikis[7]->gettitle(); ?></a>
                         </div>
-                        <p class="mt-3 mb-4">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley standard dummy text ever since the 1500s, when an unknown printer took a galley...
+                        <p class="mt-3 mb-4"><?php echo $wikis[7]->getContent(); ?>
                         </p>
                         <div class="bg-light p-4 rounded">
                             <div class="news-2">
@@ -186,7 +186,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="d-flex flex-column">
-                                        <a href="#" class="h3">Stoneman Clandestine Ukrainian claims successes against Russian.</a>
+                                        <a href="#" class="h3"><?php echo $wikis[8]->gettitle(); ?></a>
                                         <p class="mb-0 fs-5"><i class="fa fa-clock"> 06 minute read</i> </p>
                                         <p class="mb-0 fs-5"><i class="fa fa-eye"> 3.5k Views</i></p>
                                     </div>
@@ -204,7 +204,7 @@
                                 </div>
                                 <div class="col-12">
                                     <div class="d-flex flex-column">
-                                        <a href="#" class="h4 mb-2">Get the best speak market, news.</a>
+                                        <a href="#" class="h4 mb-2"><?php echo $wikis[9]->gettitle(); ?></a>
                                         <p class="fs-5 mb-0"><i class="fa fa-clock"> 06 minute read</i> </p>
                                         <p class="fs-5 mb-0"><i class="fa fa-eye"> 3.5k Views</i></p>
                                     </div>
@@ -218,7 +218,7 @@
                                         </div>
                                         <div class="col-7">
                                             <div class="features-content d-flex flex-column">
-                                                <a href="#" class="h6">Get the best speak market, news.</a>
+                                                <a href="#" class="h6"><?php echo $wikis[10]->gettitle(); ?></a>
                                                 <small><i class="fa fa-clock"> 06 minute read</i> </small>
                                                 <small><i class="fa fa-eye"> 3.5k Views</i></small>
                                             </div>
@@ -234,7 +234,7 @@
                                         </div>
                                         <div class="col-7">
                                             <div class="features-content d-flex flex-column">
-                                                <a href="#" class="h6">Get the best speak market, news.</a>
+                                                <a href="#" class="h6"><?php echo $wikis[11]->gettitle(); ?></a>
                                                 <small><i class="fa fa-clock"> 06 minute read</i> </small>
                                                 <small><i class="fa fa-eye"> 3.5k Views</i></small>
                                             </div>
@@ -250,7 +250,7 @@
                                         </div>
                                         <div class="col-7">
                                             <div class="features-content d-flex flex-column">
-                                                <a href="#" class="h6">Get the best speak market, news.</a>
+                                                <a href="#" class="h6"><?php echo $wikis[12]->gettitle(); ?></a>
                                                 <small><i class="fa fa-clock"> 06 minute read</i> </small>
                                                 <small><i class="fa fa-eye"> 3.5k Views</i></small>
                                             </div>
@@ -266,7 +266,7 @@
                                         </div>
                                         <div class="col-7">
                                             <div class="features-content d-flex flex-column">
-                                                <a href="#" class="h6">Get the best speak market, news.</a>
+                                                <a href="#" class="h6"><?php echo $wikis[13]->gettitle(); ?></a>
                                                 <small><i class="fa fa-clock"> 06 minute read</i> </small>
                                                 <small><i class="fa fa-eye"> 3.5k Views</i></small>
                                             </div>
@@ -282,7 +282,7 @@
                                         </div>
                                         <div class="col-7">
                                             <div class="features-content d-flex flex-column">
-                                                <a href="#" class="h6">Get the best speak market, news.</a>
+                                                <a href="#" class="h6"><?php echo $wikis[14]->gettitle(); ?></a>
                                                 <small><i class="fa fa-clock"> 06 minute read</i> </small>
                                                 <small><i class="fa fa-eye"> 3.5k Views</i></small>
                                             </div>
@@ -298,7 +298,7 @@
                                         </div>
                                         <div class="col-7">
                                             <div class="features-content d-flex flex-column">
-                                                <a href="#" class="h6">Get the best speak market, news.</a>
+                                                <a href="#" class="h6"><?php echo $wikis[15]->gettitle(); ?></a>
                                                 <small><i class="fa fa-clock"> 06 minute read</i> </small>
                                                 <small><i class="fa fa-eye"> 3.5k Views</i></small>
                                             </div>
@@ -320,8 +320,8 @@
                 <div class="row g-4 align-items-center">
                     <div class="col-lg-7">
                         <h1 class="mb-4 text-primary">Newsers</h1>
-                        <h1 class="mb-4">Get Every Weekly Updates</h1>
-                        <p class="text-dark mb-4 pb-2">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley
+                        <h1 class="mb-4"><?php echo $wikis[16]->gettitle(); ?></h1>
+                        <p class="text-dark mb-4 pb-2">
                         </p>
                         <div class="position-relative mx-auto">
                             <input class="form-control w-100 py-3 rounded-pill" type="email" placeholder="Your Busines Email">
@@ -350,7 +350,7 @@
                                 <img src="View/img/news-7.jpg" class="img-zoomin img-fluid rounded-top w-100" alt="">
                             </div>
                             <div class="d-flex flex-column p-4">
-                                <a href="#" class="h4">Lorem Ipsum is simply dummy text of...</a>
+                                <a href="#" class="h4"><?php echo $wikis[17]->gettitle(); ?></a>
                                 <div class="d-flex justify-content-between">
                                     <a href="#" class="small text-body link-hover">by Willum Skeem</a>
                                     <small class="text-body d-block"><i class="fas fa-calendar-alt me-1"></i> Dec 9, 2024</small>
@@ -364,7 +364,7 @@
                                 <img src="View/img/news-6.jpg" class="img-zoomin img-fluid rounded-top w-100" alt="">
                             </div>
                             <div class="d-flex flex-column p-4">
-                                <a href="#" class="h4">Lorem Ipsum is simply dummy text of...</a>
+                                <a href="#" class="h4"><?php echo $wikis[18]->gettitle(); ?></a>
                                 <div class="d-flex justify-content-between">
                                     <a href="#" class="small text-body link-hover">by Willum Skeem</a>
                                     <small class="text-body d-block"><i class="fas fa-calendar-alt me-1"></i> Dec 9, 2024</small>
@@ -378,7 +378,7 @@
                                 <img src="View/img/news-3.jpg" class="img-zoomin img-fluid rounded-top w-100" alt="">
                             </div>
                             <div class="d-flex flex-column p-4">
-                                <a href="#" class="h4">Lorem Ipsum is simply dummy text of...</a>
+                                <a href="#" class="h4"><?php echo $wikis[19]->gettitle(); ?></a>
                                 <div class="d-flex justify-content-between">
                                     <a href="#" class="small text-body link-hover">by Willum Skeem</a>
                                     <small class="text-body d-block"><i class="fas fa-calendar-alt me-1"></i> Dec 9, 2024</small>
@@ -392,7 +392,7 @@
                                 <img src="View/img/news-4.jpg" class="img-zoomin img-fluid rounded-top w-100" alt="">
                             </div>
                             <div class="d-flex flex-column p-4">
-                                <a href="#" class="h4">Lorem Ipsum is simply dummy text of...</a>
+                                <a href="#" class="h4"><?php echo $wikis[20]->gettitle(); ?></a>
                                 <div class="d-flex justify-content-between">
                                     <a href="#" class="small text-body link-hover">by Willum Skeem</a>
                                     <small class="text-body d-block"><i class="fas fa-calendar-alt me-1"></i> Dec 9, 2024</small>
@@ -406,7 +406,7 @@
                                 <img src="View/img/news-5.jpg" class="img-zoomin img-fluid rounded-top w-100" alt="">
                             </div>
                             <div class="d-flex flex-column p-4">
-                                <a href="#" class="h4 ">Lorem Ipsum is simply dummy text of...</a>
+                                <a href="#" class="h4 "><?php echo $wikis[21]->gettitle(); ?></a>
                                 <div class="d-flex justify-content-between">
                                     <a href="#" class="small text-body link-hover">by Willum Skeem</a>
                                     <small class="text-body d-block"><i class="fas fa-calendar-alt me-1"></i> Dec 9, 2024</small>
@@ -467,7 +467,7 @@
                                                 </div>
                                             </div>
                                             <div class="my-4">
-                                                <a href="#" class="h4">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</a>
+                                                <a href="#" class="h4"><?php echo $wikis[22]->gettitle(); ?></a>
                                             </div>
                                             <div class="d-flex justify-content-between">
                                                 <a href="#" class="text-dark link-hover me-3"><i class="fa fa-clock"></i> 06 minute read</a>
@@ -475,7 +475,7 @@
                                                 <a href="#" class="text-dark link-hover me-3"><i class="fa fa-comment-dots"></i> 05 Comment</a>
                                                 <a href="#" class="text-dark link-hover"><i class="fa fa-arrow-up"></i> 1.5k Share</a>
                                             </div>
-                                            <p class="my-4">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy Lorem Ipsum has been the industry's standard dummy..
+                                            <p class="my-4"><?php echo $wikis[22]->getContent(); ?>
                                             </p>
                                         </div>
                                         <div class="col-lg-4">
@@ -490,7 +490,7 @@
                                                         <div class="col-7">
                                                             <div class="features-content d-flex flex-column">
                                                                 <p class="text-uppercase mb-2">Sports</p>
-                                                                <a href="#" class="h6">Get the best speak market, news.</a>
+                                                                <a href="#" class="h6"><?php echo $wikis[23]->gettitle(); ?></a>
                                                                 <small class="text-body d-block"><i class="fas fa-calendar-alt me-1"></i> Dec 9, 2024</small>
                                                             </div>
                                                         </div>
@@ -506,7 +506,7 @@
                                                         <div class="col-7">
                                                             <div class="features-content d-flex flex-column">
                                                                 <p class="text-uppercase mb-2">Sports</p>
-                                                                <a href="#" class="h6">Get the best speak market, news.</a>
+                                                                <a href="#" class="h6"><?php echo $wikis[24]->gettitle(); ?></a>
                                                                 <small class="text-body d-block"><i class="fas fa-calendar-alt me-1"></i> Dec 9, 2024</small>
                                                             </div>
                                                         </div>
@@ -522,7 +522,7 @@
                                                         <div class="col-7">
                                                             <div class="features-content d-flex flex-column">
                                                                 <p class="text-uppercase mb-2">Sports</p>
-                                                                <a href="#" class="h6">Get the best speak market, news.</a>
+                                                                <a href="#" class="h6"><?php echo $wikis[25]->gettitle(); ?></a>
                                                                 <small class="text-body d-block"><i class="fas fa-calendar-alt me-1"></i> Dec 9, 2024</small>
                                                             </div>
                                                         </div>
@@ -538,7 +538,7 @@
                                                         <div class="col-7">
                                                             <div class="features-content d-flex flex-column">
                                                                 <p class="text-uppercase mb-2">Sports</p>
-                                                                <a href="#" class="h6">Get the best speak market, news.</a>
+                                                                <a href="#" class="h6"><?php echo $wikis[26]->gettitle(); ?></a>
                                                                 <small class="text-body d-block"><i class="fas fa-calendar-alt me-1"></i> Dec 9, 2024</small>
                                                             </div>
                                                         </div>
@@ -554,7 +554,7 @@
                                                         <div class="col-7">
                                                             <div class="features-content d-flex flex-column">
                                                                 <p class="text-uppercase mb-2">Magazine</p>
-                                                                <a href="#" class="h6">Get the best speak market, news.</a>
+                                                                <a href="#" class="h6"><?php echo $wikis[27]->gettitle(); ?></a>
                                                                 <small class="text-body d-block"><i class="fas fa-calendar-alt me-1"></i> Dec 9, 2024</small>
                                                             </div>
                                                         </div>
@@ -574,7 +574,7 @@
                                                 </div>
                                             </div>
                                             <div class="my-3">
-                                                <a href="#" class="h4">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</a>
+                                                <a href="#" class="h4"><?php echo $wikis[28]->gettitle(); ?></a>
                                             </div>
                                             <p class="mt-4">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy Lorem Ipsum has been the industry's standard dummy..
                                             </p>
@@ -681,7 +681,7 @@
                                                 </div>
                                             </div>
                                             <div class="my-3">
-                                                <a href="#" class="h4">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</a>
+                                                <a href="#" class="h4"><?php echo $wikis[29]->gettitle(); ?></a>
                                             </div>
                                             <p class="mt-4">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy Lorem Ipsum has been the industry's standard dummy..
                                             </p>

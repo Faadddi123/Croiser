@@ -25,10 +25,10 @@ if (isset($_GET["action"])) {
 
         case "gohome":
             if($type === 'user'){
-                $controller_wikis->diplaytheedits();
             }else{
                 
-                header('Location: index.php?action=dinilindex');
+                $controller_wikis->diplaytheedits();
+                // header('Location: index.php?action=dinilindex');
             }
            
             
@@ -63,7 +63,8 @@ if (isset($_GET["action"])) {
             include 'View/contact.php';
             break;
         case "realhome":
-            include 'View/index.php';
+            $controller_wikis->getALLwikis();
+            
             break;
         case "404":
             include 'View/404.php';
@@ -133,9 +134,9 @@ if (isset($_GET["action"])) {
         // case "wiki_edit":
         //     $controller_wikis->DisableWiki();
         //     break;
-        // case "wiki_delete":
-        //     $controller_wikis->EnableWiki();
-        //     break;
+        case "wiki_delete":
+            $controller_wikis->delete_wiki();
+            break;
         case "Insert_for_admin":
             if($type === 'admin'){
                 include 'View/adminView/blankcopy.php';
@@ -146,11 +147,16 @@ if (isset($_GET["action"])) {
             break;
         case "Usertable":
             if($type === 'user'){
-                
-            }else{
                 $controller_wikis->display_table_wiki_for_each_user();
+            }else{
+                
                 header('Location: index.php?action=dinilindex');
             }
+            
+            break;
+        case "affichage":
+            $wikis = $controller_wikis->getwikisById();
+            include 'View/post.php';
             
             break;
     }

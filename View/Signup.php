@@ -47,5 +47,49 @@
       </div>
   </div>
 </section>
+<script>
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+const isValidEmail = (email) => {
+  return emailRegex.test(email);
+};
+const usernameRegex = /^[a-zA-Z0-9_]{3,20}$/;
+
+const isValidUsername = (username) => {
+  return usernameRegex.test(username);
+};
+// Requires at least 8 characters, at least one uppercase letter, one lowercase letter, and one number
+const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
+
+const isValidPassword = (password) => {
+  return passwordRegex.test(password);
+};
+document.querySelector('form').addEventListener('submit', function(event) {
+  const emailInput = document.getElementById('email').value;
+  const usernameInput = document.getElementById('name').value;
+  const passwordInput = document.getElementById('password').value;
+
+  if (!isValidEmail(emailInput)) {
+    alert('Invalid email address');
+    event.preventDefault(); // Prevent form submission
+    return;
+  }
+
+  if (!isValidUsername(usernameInput)) {
+    alert('Invalid username');
+    event.preventDefault(); // Prevent form submission
+    return;
+  }
+
+  if (!isValidPassword(passwordInput)) {
+    alert('Invalid password');
+    event.preventDefault(); // Prevent form submission
+    return;
+  }
+
+  // Continue with form submission if all validations pass
+});
+
+</script>
 </body>
 </html>

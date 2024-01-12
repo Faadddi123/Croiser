@@ -102,7 +102,7 @@ function displaytheSearches(dkashi){
     search.id = 'hi';
     search.innerHTML = `
     <div class="mb-4">
-                            <a href="#" class="h1 display-5">${dkashi['title']}</a>
+                            <a href="index.php?action=affichage&id=${dkashi['id']}" class="h1 display-5">${dkashi['title']}</a>
                         </div>
                         <div class="position-relative rounded overflow-hidden mb-3 d-flex gap-2">
                             <img src="View/img/news-1.jpg" class="img-zoomin img-fluid h-25 rounded col-4" alt="">
