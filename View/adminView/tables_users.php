@@ -132,9 +132,24 @@
 
             <!-- Nav Item - Tables -->
             <li class="nav-item active">
-                <a class="nav-link" href="tables.html">
+                <a class="nav-link" href="index.php?action=admin_wiki">
                     <i class="fas fa-fw fa-table"></i>
-                    <span>Tables</span></a>
+                    <span>Table wiki</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="index.php?action=admin_category">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Table category</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="index.php?action=admin_tags">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Table tags</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="index.php?action=admin_users">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Table users</span></a>
             </li>
 
             <!-- Divider -->
@@ -379,41 +394,29 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
+                                        <th>id</th>
                                             <th>Name</th>
-                                            <th>Title</th>
-                                            <th>category</th>
-                                            <th>Age</th>
-                                            <th>Creation date</th>
-                                            <th>Salary</th>
+                                            <th>email</th>
+                                            <th>number of wikis created</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
+                                            <th>id</th>
                                             <th>Name</th>
-                                            <th>Title</th>
-                                            <th>category</th>
-                                            <th>Age</th>
-                                            <th>Creation date</th>
-                                            <th>Salary</th>
+                                            <th>email</th>
+                                            <th>number of wikis created</th>
+
                                         </tr>
                                     </tfoot>
                                     <tbody>
-                                        <?php foreach($wikis as $wiki):?>
+                                        <?php foreach($users as $user):?>
                                         <tr>
-                                            <td><?php echo $wiki->getUser_name(); ?></td>
-                                            <td><?php echo $wiki->getTitle(); ?></td>
-                                            <td><?php echo $wiki->getCategory_name(); ?></td>
-                                            <td>61</td>
-                                            <td><?php echo $wiki->getDate_created(); ?></td>
-                                            <td>
-                                            <?php if ($wiki->getArchived()): ?>
-                                    <a href="index.php?action=wiki_disable&id=<?= $wiki->getId(); ?>"
-                                        class="btn btn-success btn-sm">Enable</a>
-                                    <?php else: ?>
-                                    <a href="index.php?action=wiki_enable&id=<?= $wiki->getId(); ?>"
-                                        class="btn btn-danger btn-sm">Disable</a>
-                                    <?php endif; ?>
-                                            </td>
+                                            <td><?php echo $user->getId(); ?></td>
+                                            <td><?php echo $user->getName(); ?></td>
+                                            <td><?php echo $user->getEmail(); ?></td>
+                                            <td><?php echo $user->getHowmanywikis(); ?></td>
+                                            
                                         </tr>
                                         <?php endforeach;?>
                                     </tbody>

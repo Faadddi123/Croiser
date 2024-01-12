@@ -132,22 +132,22 @@
 
             <!-- Nav Item - Tables -->
             <li class="nav-item active">
-                <a class="nav-link" href="tables.html">
+                <a class="nav-link" href="index.php?action=admin_wiki">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Table wiki</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="tables.html">
+                <a class="nav-link" href="index.php?action=admin_category">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Table category</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="tables.html">
+                <a class="nav-link" href="index.php?action=admin_tags">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Table tags</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="tables.html">
+                <a class="nav-link" href="index.php?action=admin_users">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Table users</span></a>
             </li>

@@ -132,9 +132,24 @@
 
             <!-- Nav Item - Tables -->
             <li class="nav-item active">
-                <a class="nav-link" href="tables.html">
+                <a class="nav-link" href="index.php?action=admin_wiki">
                     <i class="fas fa-fw fa-table"></i>
-                    <span>Table wikis</span></a>
+                    <span>Table wiki</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="index.php?action=admin_category">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Table category</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="index.php?action=admin_tags">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Table tags</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="index.php?action=admin_users">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Table users</span></a>
             </li>
 
             <!-- Divider -->
@@ -146,7 +161,7 @@
             </div>
 
         </ul>
-        <!-- End of Sidebar -->
+        <!-- End of Sidebar --> 
 
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
@@ -371,8 +386,9 @@
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">DataTables wikis</h6>
+                        <div class="card-header py-3 justify-content-between d-flex">
+                            <h6 class="m-0 font-weight-bold text-primary">DataTables categorys</h6>
+                            <a href="index.php?action=Insert_for_admin" class=" btn btn-success btn-sm">Add category</a>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">

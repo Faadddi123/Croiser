@@ -34,6 +34,17 @@ class usersDAO{
         }
         
     }
+    public function get_users(){
+        $query = "SELECT * FROM users;";
+        $stmt = $this->db->prepare($query);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $users = array();
+        foreach ($result as $B) {
+            $users[] = new user($B["id"], $B["name"],$B["email"]);
+        }
+        return $users;
+    }
     public function get_Name_by_id($id){
         $query = "SELECT * FROM users WHERE id = :id;";
         $stmt = $this->db->prepare($query);
@@ -43,6 +54,21 @@ class usersDAO{
         $number_of_users = count($result);
         if( $number_of_users == 1 ){
             $idofthe_champion = $result[0]["name"];
+            return $idofthe_champion;
+        }else{
+            return false;
+        }
+    }
+
+    public function get_number_of_wikis($id){
+        $query = "SELECT count(wikis.user_id) as howmanywikis FROM wikis INNER JOIN users on wikis.user_id = users.id WHERE users.id = :id GROUP BY wikis.user_id";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindparam(':id', $id, PDO::PARAM_STR);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $number_of_users = count($result);
+        if( $number_of_users == 1 ){
+            $idofthe_champion = $result[0]["howmanywikis"];
             return $idofthe_champion;
         }else{
             return false;

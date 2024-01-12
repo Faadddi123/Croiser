@@ -1,8 +1,9 @@
 <?php
 include 'Controller/Generalcontroller.php';
-$controller_horaires = new controller_users();
+$controller_users = new controller_users();
 $controller_wikis = new controller_wikis();
 $controller_categories = new controller_categories();
+$controller_tags = new controller_tags();
 $controller_json = new Controller_Json();
 session_start();
 
@@ -11,7 +12,7 @@ if (isset($_GET["action"])) {
 
     switch ($action) {
         case "adduser":
-            $controller_horaires->adduser();
+            $controller_users->adduser();
             break;
 
         case "signin":
@@ -19,7 +20,7 @@ if (isset($_GET["action"])) {
             break;
 
         case "trysign":
-            $controller_horaires->signin();
+            $controller_users->signin();
             break;
 
         case "gohome":
@@ -60,11 +61,17 @@ if (isset($_GET["action"])) {
         case "404":
             include 'View/404.php';
             break;
-        case "admin":
-            $controller_wikis->display_table();
+        case "admin_wiki":
+            $controller_wikis->display_table_wiki();
             break;
         case "admin_category":
             $controller_categories->getCategoriesAndCount();
+            break;
+        case "admin_tags":
+            $controller_tags->gettagsAndCount();
+            break;
+        case "admin_users":
+            $controller_users->getusersForTable();
             break;
         case "wiki_disable":
             $controller_wikis->DisableWiki();
@@ -77,6 +84,9 @@ if (isset($_GET["action"])) {
             break;
         case "wiki_delete":
             $controller_wikis->EnableWiki();
+            break;
+        case "Insert_for_admin":
+            include 'View/adminView/blankcopy.php';
             break;
     }
 } else {

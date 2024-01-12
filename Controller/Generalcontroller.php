@@ -16,6 +16,15 @@ class controller_users{
         include 'View/Signin.php';
         
     }
+    function getusersForTable(){
+        $usersDAO = new usersDAO();
+        $users = $usersDAO->get_users();
+        foreach($users as $user):
+            $user->setHowmanywikis($usersDAO->get_number_of_wikis($user->getId()));
+        endforeach;
+        include 'View/adminView/tables_users.php';
+       
+    }
 
     function signin(){
         extract($_POST);
@@ -25,7 +34,14 @@ class controller_users{
 
 }
 class controller_tags{
-
+    function gettagsAndCount(){
+        $tagsDAO = new tagsDAO();
+        $tags = $tagsDAO->gettags_ALL();
+        foreach($tags as $tag):
+            $tag->setNumberOfTagsInEachWiki($tagsDAO->gettags_And_Count($tag->getId()));
+        endforeach;
+        include 'View/adminView/tables_tags.php';
+    }
 }
 class controller_wikis{
     function wikis(){
@@ -85,13 +101,13 @@ if (isset($_FILES['image_uploaded']) && $_FILES['image_uploaded']['error'] === U
         $id = isset($_GET['id']) ? $_GET['id'] : 0;
         $wikiDAO = new wikiDAO();
         $wikiDAO->disable_wiki($id);
-        header('Location: index.php?action=admin');
+        header('Location: index.php?action=admin_wiki');
     }
     function EnableWiki(){
         $id = isset($_GET['id'])? $_GET['id'] : 0;
         $wikiDAO = new wikiDAO();
         $wikiDAO->enale_wiki($id);
-        header('Location: index.php?action=admin');
+        header('Location: index.php?action=admin_wiki');
     }
     function getwikisById(){
 
@@ -99,10 +115,8 @@ if (isset($_FILES['image_uploaded']) && $_FILES['image_uploaded']['error'] === U
         //khasni n7at l id;
         $wikis = $wikiDAO->get_wikis_by_id($id);
 
-        
-
     }
-    function display_table(){
+    function display_table_wiki(){
         $wikiDAO = new wikiDAO();
         $usersDAO = new usersDAO();
         $categoryDAO = new categoryDAO();

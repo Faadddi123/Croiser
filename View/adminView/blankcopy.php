@@ -9,16 +9,19 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Blank</title>
+    <title>SB Admin 2 - Tables</title>
 
-    <!-- Custom fonts for this template-->
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <!-- Custom fonts for this template -->
+    <link href="View/adminView/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
-    <!-- Custom styles for this template-->
-    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="View/adminView/css/sb-admin-2.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this page -->
+    <link href="View/adminView/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
 </head>
 
@@ -100,14 +103,13 @@
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item active">
-                <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true"
-                    aria-controls="collapsePages">
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+                    aria-expanded="true" aria-controls="collapsePages">
                     <i class="fas fa-fw fa-folder"></i>
                     <span>Pages</span>
                 </a>
-                <div id="collapsePages" class="collapse show" aria-labelledby="headingPages"
-                    data-parent="#accordionSidebar">
+                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Login Screens:</h6>
                         <a class="collapse-item" href="login.html">Login</a>
@@ -116,7 +118,7 @@
                         <div class="collapse-divider"></div>
                         <h6 class="collapse-header">Other Pages:</h6>
                         <a class="collapse-item" href="404.html">404 Page</a>
-                        <a class="collapse-item active" href="blank.html">Blank Page</a>
+                        <a class="collapse-item" href="blank.html">Blank Page</a>
                     </div>
                 </div>
             </li>
@@ -129,10 +131,25 @@
             </li>
 
             <!-- Nav Item - Tables -->
-            <li class="nav-item">
-                <a class="nav-link" href="tables.html">
+            <li class="nav-item active">
+                <a class="nav-link" href="index.php?action=admin_wiki">
                     <i class="fas fa-fw fa-table"></i>
-                    <span>Tables</span></a>
+                    <span>Table wiki</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="index.php?action=admin_category">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Table category</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="index.php?action=admin_tags">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Table tags</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="index.php?action=admin_users">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Table users</span></a>
             </li>
 
             <!-- Divider -->
@@ -144,7 +161,7 @@
             </div>
 
         </ul>
-        <!-- End of Sidebar -->
+        <!-- End of Sidebar --> 
 
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
@@ -372,6 +389,21 @@
                         </form>
 
                 </div>
+                <div class="container-fluid mt-5">
+
+                    <!-- Page Heading -->
+                    <form>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Name of tags</label>
+                            <input type="email" class="form-control" id="" aria-describedby="emailHelp" placeholder="example : Web development">
+                            <small id="emailHelp" class="form-text text-muted">put a tag name that would be added to the wikis</small>
+                        </div>
+                        
+                        
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+
+                </div>
                 <!-- /.container-fluid -->
 
             </div>
@@ -419,14 +451,21 @@
     </div>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="View/adminView/vendor/jquery/jquery.min.js"></script>
+    <script src="View/adminView/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="View/adminView/vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
+    <script src="View/adminView/js/sb-admin-2.min.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="View/adminView/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="View/adminView/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="View/adminView/js/demo/datatables-demo.js"></script>
 
 </body>
 
