@@ -14,8 +14,9 @@ class wiki{
     private $user_name;
     private $category_name;
     private $tags_name;
+    private $image;
 
-    public function __construct($id, $user_id,$title,$content,$date_created,$category_id,$archived
+    public function __construct($id, $user_id,$title,$content,$date_created,$category_id,$archived,$image
         ){
             $this->id = $id;
             $this->user_id = $user_id;
@@ -24,6 +25,7 @@ class wiki{
             $this->date_created = $date_created;
             $this->category_id = $category_id;
             $this->archived = $archived;
+            $this->image = $image;
         
         }
 
@@ -144,6 +146,14 @@ class wiki{
     public function getArchived()
     {
         return $this->archived;
+    }
+
+    /**
+     * Get the value of image
+     */ 
+    public function getImage()
+    {
+        return $this->image;
     }
 }
 

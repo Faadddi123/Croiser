@@ -13,7 +13,7 @@ class controller_users{
         
         $usersDAO->add_user($name,$email,$password);
 
-        include 'View/Signin.php';
+        include 'View/adminView/register.php';
         
     }
     function getusersForTable(){
@@ -46,34 +46,38 @@ class controller_tags{
 class controller_wikis{
     function wikis(){
         
-
-  // Escape HTML entities to prevent XSS
-  
-        $userid = $_SESSION['user'];
-        extract($_POST);
-        $uploadPath = 'View/image_uploaded'; // Adjust the path as needed
-
-if (isset($_FILES['image_uploaded']) && $_FILES['image_uploaded']['error'] === UPLOAD_ERR_OK) {
-    $tempPath = $_FILES['image_uploaded']['tmp_name'];
-    $fileName = $_FILES['image_uploaded']['name'];
-    $targetPath = $uploadPath . $fileName;
-
-    move_uploaded_file($tempPath, $targetPath);
-
-    // Return JSON response with details
-    echo json_encode([
-        'uploaded' => true,
-        'url' => 'image_uploaded/' . $fileName
-    ]);
-} else {
-    // Return JSON response with error message
-    echo json_encode([
-        'uploaded' => false,
-        'error' => 'Upload failed.'
-    ]);
-}
-        // $content = htmlspecialchars($editor_content, ENT_QUOTES, 'UTF-8');
         $wikiDAO = new wikiDAO();
+  // Escape HTML entities to prevent XSS
+  $userid = $_SESSION['user'];
+  extract($_POST);
+  $uploadPath = 'View/image_uploaded'; // Adjust the path as needed
+  
+  if (isset($_FILES['image_uploaded']) && $_FILES['image_uploaded']['error'] === UPLOAD_ERR_OK) {
+      $tempPath = $_FILES['image_uploaded']['tmp_name'];
+      $fileName = $_FILES['image_uploaded']['name'];
+      $targetPath = $uploadPath . $fileName;
+      
+      move_uploaded_file($tempPath, $targetPath);
+      
+      // Return JSON response with details
+      echo json_encode([
+          'uploaded' => true,
+          'url' => 'image_uploaded/' . $fileName
+        ]);
+    } else {
+        // Return JSON response with error message
+        echo json_encode([
+            'uploaded' => false,
+            'error' => 'Upload failed.'
+        ]);
+    }
+    if(isset($_GET['idwiki'])){
+        $id = $_GET['idwiki'];
+        var_dump($fileName);
+        $wikiDAO->update_wiki($title,$editor_content,$userid,$fileName,$id);
+    }
+        // $content = htmlspecialchars($editor_content, ENT_QUOTES, 'UTF-8');
+        
         
         $wikiDAO->add_wiki($title,$editor_content,$userid,$fileName);
         header('Location: index.php?action=dinilindex');
@@ -84,7 +88,22 @@ if (isset($_FILES['image_uploaded']) && $_FILES['image_uploaded']['error'] === U
         // upload_image();
         
     }
-
+    function diplaytheedits(){
+        $wikiDAO = new wikiDAO();
+        $id = 0;
+        $title = '';
+        $editor_content = '';
+        $fileName = '';
+        if(isset($_GET['idwiki'])){
+            $id = $_GET['idwiki'];
+            $wiki = $wikiDAO->get_wikis_by_id($id);
+            $title = $wiki[0]->getTitle();
+            $editor_content = $wiki[0]->getContent();
+            $fileName = $wiki[0]->getImage();
+            var_dump($fileName);
+        }
+        include 'View/Signin.php';
+    }
     function getwikis(){
 
         $wikiDAO = new wikiDAO();
@@ -127,6 +146,19 @@ if (isset($_FILES['image_uploaded']) && $_FILES['image_uploaded']['error'] === U
             
         endforeach;
         include 'View/adminView/tables_wikis.php';
+    }
+    function display_table_wiki_for_each_user(){
+        $id = $_SESSION['user'];
+        $wikiDAO = new wikiDAO();
+        $usersDAO = new usersDAO();
+        $categoryDAO = new categoryDAO();
+        $wikis = $wikiDAO->get_wikis_by_user_id($id);
+        foreach($wikis as $wiki):
+            $wiki->setUser_name($usersDAO->get_Name_by_id($wiki->getUser_id()));
+            $wiki->setCategory_name($categoryDAO->get_category_name_by_id($wiki->getCategory_id()));
+            
+        endforeach;
+        include 'View/adminView/Usertable.php';
     }
 
 }

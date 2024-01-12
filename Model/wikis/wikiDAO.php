@@ -23,7 +23,20 @@ class wikiDAO{
         $wikiDATA = $stmt->fetchAll();
         $wikis = array();
         foreach ($wikiDATA as $B) {
-            $wikis[] = new wiki($B["id"], $B["user_id"],$B["title"],$B["content"],$B["date_created"],$B["category_id"],$B["archived"]);
+            $wikis[] = new wiki($B["id"], $B["user_id"],$B["title"],$B["content"],$B["date_created"],$B["category_id"],$B["archived"],$B["image"]);
+        }
+        return $wikis;
+    }
+    public function get_wikis_by_user_id($id){
+        
+        $query = "SELECT * FROM wikis WHERE user_id = :id";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindParam(':id' , $id , PDO::PARAM_INT);
+        $stmt -> execute();
+        $wikiDATA = $stmt->fetchAll();
+        $wikis = array();
+        foreach ($wikiDATA as $B) {
+            $wikis[] = new wiki($B["id"], $B["user_id"],$B["title"],$B["content"],$B["date_created"],$B["category_id"],$B["archived"],$B["image"]);
         }
         return $wikis;
     }
@@ -84,16 +97,27 @@ class wikiDAO{
     public function get_wikis_by_id($id){
         $query = "SELECT * FROM wikis WHERE id = :id";
 
-        $stmt = $this->db->query($query);
+        $stmt = $this->db->prepare($query);
         $stmt->bindParam(':id',$id,PDO::PARAM_STR);
         $stmt -> execute();
         $wikiDATA = $stmt->fetchAll();
         $wikis = array();
         foreach ($wikiDATA as $B) {
-            $wikis[] = new wiki($B["id"], $B["user_id"],$B["title"],$B["content"],$B["date_created"],$B["category_id"],$B["archived"]);
+            $wikis[] = new wiki($B["id"], $B["user_id"],$B["title"],$B["content"],$B["date_created"],$B["category_id"],$B["archived"],$B["image"]);
         }
         return $wikis;
     }
+    public function update_wiki($title, $editor_content, $userid, $fileName, $id) {
+        $query = "UPDATE wikis SET title = :title, content = :content, user_id = :user_id, image = :image WHERE id = :id";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindParam(':title', $title, PDO::PARAM_STR);
+        $stmt->bindParam(':content', $editor_content, PDO::PARAM_STR);
+        $stmt->bindParam(':user_id', $userid, PDO::PARAM_INT);
+        $stmt->bindParam(':image', $fileName, PDO::PARAM_STR);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+    }
+    
     public function disable_wiki($id){
         $query = "UPDATE wikis SET archived = 0 WHERE id = :id";
         $stmt = $this->db->prepare($query);

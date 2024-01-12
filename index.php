@@ -6,7 +6,7 @@ $controller_categories = new controller_categories();
 $controller_tags = new controller_tags();
 $controller_json = new Controller_Json();
 session_start();
-
+$type = isset($_SESSION['type']) ? $_SESSION['type'] : '';
 if (isset($_GET["action"])) {
     $action = $_GET["action"];
 
@@ -16,7 +16,7 @@ if (isset($_GET["action"])) {
             break;
 
         case "signin":
-            include 'View/Signin.php';
+            include 'View/Signup.php';
             break;
 
         case "trysign":
@@ -24,8 +24,15 @@ if (isset($_GET["action"])) {
             break;
 
         case "gohome":
-            var_dump($_SESSION['user']);
-            include 'View/home.php';
+            if($type === 'user'){
+                $controller_wikis->diplaytheedits();
+            }else{
+                
+                header('Location: index.php?action=dinilindex');
+            }
+           
+            
+            
             
             break;
 
@@ -62,31 +69,89 @@ if (isset($_GET["action"])) {
             include 'View/404.php';
             break;
         case "admin_wiki":
-            $controller_wikis->display_table_wiki();
+            if($type === 'admin'){
+                $controller_wikis->display_table_wiki();
+            }else{
+                header('Location: index.php?action=dinilindex');
+            } 
+            
+            break;
+        case "admin":
+            if($type === 'admin'){
+                include 'View/adminView/stats.php';
+            }else{
+                header('Location: index.php?action=dinilindex');
+            } 
+            
+            break;
+        case "user_table":
+            $controller_wikis->display_table_wiki_for_each_user();
+            break;
+        
+            $controller_wikis->display_table_wiki_for_each_user();
             break;
         case "admin_category":
-            $controller_categories->getCategoriesAndCount();
+            if($type === 'admin'){
+                $controller_categories->getCategoriesAndCount();
+            }else{
+                header('Location: index.php?action=dinilindex');
+            }
+            
             break;
         case "admin_tags":
-            $controller_tags->gettagsAndCount();
+            if($type === 'admin'){
+                $controller_tags->gettagsAndCount();
+            }else{
+                header('Location: index.php?action=dinilindex');
+            }
+            
             break;
         case "admin_users":
-            $controller_users->getusersForTable();
+            if($type === 'admin'){
+                $controller_users->getusersForTable();
+            }else{
+                header('Location: index.php?action=dinilindex');
+            }
+            
             break;
         case "wiki_disable":
-            $controller_wikis->DisableWiki();
+            if($type === 'admin'){
+                $controller_wikis->DisableWiki();
+            }else{
+                header('Location: index.php?action=dinilindex');
+            }
+            
             break;
         case "wiki_enable":
-            $controller_wikis->EnableWiki();
+            if($type === 'admin'){
+                $controller_wikis->EnableWiki();
+            }else{
+                header('Location: index.php?action=dinilindex');
+            }
+            
             break;
-        case "wiki_edit":
-            $controller_wikis->DisableWiki();
-            break;
-        case "wiki_delete":
-            $controller_wikis->EnableWiki();
-            break;
+        // case "wiki_edit":
+        //     $controller_wikis->DisableWiki();
+        //     break;
+        // case "wiki_delete":
+        //     $controller_wikis->EnableWiki();
+        //     break;
         case "Insert_for_admin":
-            include 'View/adminView/blankcopy.php';
+            if($type === 'admin'){
+                include 'View/adminView/blankcopy.php';
+            }else{
+                header('Location: index.php?action=dinilindex');
+            }
+            
+            break;
+        case "Usertable":
+            if($type === 'user'){
+                
+            }else{
+                $controller_wikis->display_table_wiki_for_each_user();
+                header('Location: index.php?action=dinilindex');
+            }
+            
             break;
     }
 } else {

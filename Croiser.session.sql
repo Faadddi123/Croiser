@@ -93,7 +93,7 @@ BEGIN
 
     WHILE i <= 10 DO
         -- Generate random values for wiki_id and tag_id
-        SET wiki_id = FLOOR(RAND() * 26) + 1;
+        SET wiki_id = FLOOR(RAND() * 25) + 1;
         SET tag_id = FLOOR(RAND() * 14) + 1;
 
         -- Debug output
@@ -109,11 +109,16 @@ END;
 -- @block
 CALL GenerateWikiTagInserts();
 -- @block
+SELECT * FROM wikis WHERE user_id = 1
+-- @block
 SELECT wikis.*,GROUP_CONCAT(tags.name) AS tag_names FROM wikis INNER JOIN wiki_tags on wikis.id = wiki_tags.wiki_id INNER JOIN tags on wiki_tags.tag_id  = tags.id GROUP BY wikis.id;
 -- @block
-
+ALTER TABLE wikis
+ADD COLUMN archived BOOLEAN
 -- @block
-SELECT * FROM tags LIMIT 7
+DELETE FROM wiki_tags;
+-- @block
+ALTER TABLE categories AUTO_INCREMENT = 1;
 --@block
 INSERT INTO categories (name) VALUES
 ('Web Development'),
