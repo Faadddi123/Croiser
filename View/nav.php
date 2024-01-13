@@ -3,7 +3,7 @@
             <div class="container-fluid bg-light">
                 <div class="container px-0">
                     <nav class="navbar navbar-light navbar-expand-xl">
-                        <a href="index.php?action=realhome" class="navbar-brand mt-3">
+                        <a href="index.php?action=admin" class="navbar-brand mt-3">
                             <p class="text-primary display-6 mb-2" style="line-height: 0;">WIKI</p>
                             <small class="text-body fw-normal" style="letter-spacing: 12px;">YouCode</small>
                         </a>

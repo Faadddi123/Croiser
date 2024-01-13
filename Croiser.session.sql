@@ -285,3 +285,6 @@ GROUP BY wikis.id;
 
 -- @block
 INSERT INTO wiki_tags (wiki_id, tag_id) VALUES (30, 5)
+-- @block
+ALTER TABLe users
+MODIFY COLUMN role ENUM ('user','admin') DEFAULT 'user';

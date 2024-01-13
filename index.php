@@ -18,17 +18,20 @@ if (isset($_GET["action"])) {
         case "signin":
             include 'View/Signup.php';
             break;
-
+        case "signup":
+            include 'View/Signin.php';
+            break;
         case "trysign":
             $controller_users->signin();
             break;
 
         case "gohome":
             if($type === 'user'){
+                $controller_wikis->diplaytheedits();
             }else{
                 
-                $controller_wikis->diplaytheedits();
-                // header('Location: index.php?action=dinilindex');
+                
+                header('Location: index.php?action=dinilindex');
             }
            
             
@@ -80,16 +83,20 @@ if (isset($_GET["action"])) {
         case "admin":
             if($type === 'admin'){
                 include 'View/adminView/stats.php';
-            }else{
+            }elseif($type === 'user'){
+                header('Location: index.php?action=user_table');
+            } else{
                 header('Location: index.php?action=dinilindex');
-            } 
+            }
             
             break;
         case "user_table":
-            $controller_wikis->display_table_wiki_for_each_user();
-            break;
-        
-            $controller_wikis->display_table_wiki_for_each_user();
+            if($type === 'user'){
+                $controller_wikis->display_table_wiki_for_each_user();
+            }else{
+                header('Location: index.php?action=dinilindex');
+            }
+            
             break;
         case "admin_category":
             if($type === 'admin'){

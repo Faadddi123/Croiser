@@ -28,10 +28,10 @@ class usersDAO{
         if( $number_of_users == 1 ){
             $idofthe_champion = $result[0]["id"];
             $_SESSION['user'] = $idofthe_champion;
-            if($result[0]["role"] == 'admin'){
-                $_SESSION['type'] == 'admin';
+            if($result[0]["role"] === 'admin'){
+                $_SESSION['type'] = 'admin';
             }else{
-                $_SESSION['type'] == 'user';
+                $_SESSION['type'] = 'user';
             }
             header("Location:index.php?action=gohome");
         }else{

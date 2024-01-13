@@ -52,7 +52,11 @@ class controller_wikis{
   extract($_POST);
   $tagIds = isset($_POST['tags']) ? $_POST['tags'] : [];
   $uploadPath = 'View/image_uploaded/'; // Adjust the path as needed
-  
+  if(isset($_GET["idwiki"])){
+    $id = $_GET['idwiki'];
+
+
+  }
   if (isset($_FILES['image_uploaded']) && $_FILES['image_uploaded']['error'] === UPLOAD_ERR_OK) {
       $tempPath = $_FILES['image_uploaded']['tmp_name'];
       $fileName = $_FILES['image_uploaded']['name'];
@@ -72,11 +76,13 @@ class controller_wikis{
             'error' => 'Upload failed.'
         ]);
     }
-    if(isset($_GET['idwiki'])){
-        $id = $_GET['idwiki'];
-        var_dump($fileName);
+    if($id != 0){
+        $wikis = $wikiDAO->get_wikis_by_id($id);
+        $fileName = $wikis[0]->getImage();
+
         $wikiDAO->update_wiki($title,$editor_content,$userid,$fileName,$id,$tagIds,$selected_action);
     }else{
+
         $wikiDAO->add_wiki($title,$editor_content,$userid,$fileName,$tagIds,$selected_action);
     }
         // $content = htmlspecialchars($editor_content, ENT_QUOTES, 'UTF-8');
@@ -103,7 +109,7 @@ class controller_wikis{
             $title = $wiki[0]->getTitle();
             $editor_content = $wiki[0]->getContent();
             $fileName = $wiki[0]->getImage();
-            var_dump($fileName);
+            
         }
         $tagsDAO = new tagsDAO();
         $tags = $tagsDAO->gettags_ALL();
